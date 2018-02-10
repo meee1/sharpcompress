@@ -19,7 +19,7 @@ namespace SharpCompress.Common.Zip
             return Header.PackedStream;
         }
 
-        internal override Stream GetCompressedStream()
+        public override Stream GetCompressedStream()
         {
             if (!Header.HasData)
             {

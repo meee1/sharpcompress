@@ -27,7 +27,7 @@ namespace SharpCompress.Common.GZip
 
         internal override string FilePartName => _name!;
 
-        internal override Stream GetCompressedStream()
+        public override Stream GetCompressedStream()
         {
             return new DeflateStream(_stream, CompressionMode.Decompress, CompressionLevel.Default);
         }

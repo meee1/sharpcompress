@@ -6,7 +6,7 @@ namespace SharpCompress.Common.Rar.Headers
 {
     // http://www.forensicswiki.org/w/images/5/5b/RARFileStructure.txt
     // https://www.rarlab.com/technote.htm
-    internal class RarHeader : IRarHeader
+    public class RarHeader : IRarHeader
     {
         private readonly HeaderType _headerType;
         private readonly bool _isRar5;
@@ -31,20 +31,20 @@ namespace SharpCompress.Common.Rar.Headers
             if (IsRar5) 
             {
                 HeaderCrc = reader.ReadUInt32();
-                reader.ResetCrc();
+            reader.ResetCrc();
                 HeaderSize = (int)reader.ReadRarVIntUInt32(3);
                 reader.Mark();
                 HeaderCode = reader.ReadRarVIntByte();
                 HeaderFlags = reader.ReadRarVIntUInt16(2);
 
                 if (HasHeaderFlag(HeaderFlagsV5.HAS_EXTRA))
-                {
+            {
                     ExtraSize = reader.ReadRarVIntUInt32();
-                }
+            }
                 if (HasHeaderFlag(HeaderFlagsV5.HAS_DATA))
                 {
                     AdditionalDataSize = (long)reader.ReadRarVInt();
-                }
+        }
             } else {
                 reader.Mark();
                 HeaderCrc = reader.ReadUInt16();
@@ -53,9 +53,9 @@ namespace SharpCompress.Common.Rar.Headers
                 HeaderFlags = reader.ReadUInt16();
                 HeaderSize = reader.ReadInt16();
                 if (HasHeaderFlag(HeaderFlagsV4.HAS_DATA))
-                {
+        {
                     AdditionalDataSize = reader.ReadUInt32();
-                }
+        }
             }
         }
 
@@ -90,13 +90,13 @@ namespace SharpCompress.Common.Rar.Headers
         }
 
         private void VerifyHeaderCrc(uint crc32)
-        {
+            {
             var b = (IsRar5 ? crc32 : (ushort)crc32) == HeaderCrc;
             if (!b)
-            {
-                throw new InvalidFormatException("rar header crc mismatch");
+                {
+                    throw new InvalidFormatException("rar header crc mismatch");
+                }
             }
-        }
 
         public HeaderType HeaderType => _headerType;
 

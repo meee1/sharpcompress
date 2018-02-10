@@ -17,7 +17,7 @@ using System.Text;
 
 namespace SharpCompress.Common.Rar.Headers
 {
-    internal class FileHeader : RarHeader
+    public class FileHeader : RarHeader
     {
         private uint _fileCrc;
 
@@ -369,6 +369,7 @@ namespace SharpCompress.Common.Rar.Headers
             return path;
         }
 
+        public long DataStartPosition { get; set; }
         public override string ToString()
         {
             return FileName;
@@ -409,18 +410,19 @@ namespace SharpCompress.Common.Rar.Headers
         //case 29: // rar 3.x compression
         //case 50: // RAR 5.0 compression algorithm.
         internal byte CompressionAlgorithm { get; private set; }
-        
+
         public bool IsSolid { get; private set; }
 
         // unused for UnpackV1 implementation (limitation)
         internal size_t WindowSize { get; private set; }
 
+        public byte PackingMethod { get; private set; }
         internal byte[] R4Salt { get; private set; }
 
         private byte HostOs { get; set; }
         internal uint FileAttributes { get; private set; }
-        internal long CompressedSize { get; private set; }
-        internal long UncompressedSize { get; private set; }
+        public long CompressedSize { get; private set; }
+        public long UncompressedSize { get; private set; }
         internal string FileName { get; private set; }
         internal byte[] SubData { get; private set; }
         internal int RecoverySectors { get; private set; }

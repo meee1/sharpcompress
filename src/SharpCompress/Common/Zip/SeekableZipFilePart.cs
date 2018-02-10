@@ -17,7 +17,7 @@ namespace SharpCompress.Common.Zip
             _directoryEntryHeader = header;
         }
 
-        internal override Stream GetCompressedStream()
+        public override Stream GetCompressedStream()
         {
             if (!_isLocalHeaderLoaded)
             {

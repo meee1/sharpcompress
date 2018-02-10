@@ -35,7 +35,7 @@ namespace SharpCompress.Common.SevenZip
             return null;
         }
 
-        internal override Stream GetCompressedStream()
+        public override Stream GetCompressedStream()
         {
             if (!Header.HasStream)
             {

@@ -16,7 +16,7 @@ namespace SharpCompress.Archives.Rar
             this.password = password;
         }
 
-        internal override Stream GetCompressedStream()
+        public override Stream GetCompressedStream()
         {
             stream.Position = FileHeader.DataStartPosition;
             if (FileHeader.R4Salt != null)

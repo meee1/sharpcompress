@@ -4,7 +4,7 @@ using System.IO;
 
 namespace SharpCompress.IO
 {
-    internal class MarkingBinaryReader : BinaryReader
+    public class MarkingBinaryReader : BinaryReader
     {
         public MarkingBinaryReader(Stream stream)
             : base(stream)
