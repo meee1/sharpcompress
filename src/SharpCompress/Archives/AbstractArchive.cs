@@ -22,7 +22,7 @@ namespace SharpCompress.Archives
 
         protected ReaderOptions ReaderOptions { get; }
 
-        private bool disposed;
+        public bool disposed;
 
         internal AbstractArchive(ArchiveType type, FileInfo fileInfo, ReaderOptions readerOptions)
         {
