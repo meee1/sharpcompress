@@ -18,10 +18,10 @@ namespace SharpCompress.IO
             if (ThrowOnDispose)
             {
                 throw new InvalidOperationException($"Attempt to dispose of a {nameof(NonDisposingStream)} when {nameof(ThrowOnDispose)} is {ThrowOnDispose}");
-            }
+        }
         }
 
-        protected Stream Stream { get; }
+        public Stream Stream { get; internal set; }
 
         public override bool CanRead => Stream.CanRead;
 
@@ -36,7 +36,21 @@ namespace SharpCompress.IO
 
         public override long Length => Stream.Length;
 
-        public override long Position { get => Stream.Position; set => Stream.Position = value; }
+        public override long Position
+        {
+            get => Stream.Position;
+            set
+            {
+                if (CanRead)
+                {
+                    Stream.Position = value;
+                }
+                else
+                {
+                    Stream = File.OpenRead(((FileStream) Stream).Name);
+                }
+            }
+        }
 
         public override int Read(byte[] buffer, int offset, int count)
         {
