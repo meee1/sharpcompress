@@ -172,7 +172,7 @@ namespace SharpCompress
             int day = iDate % 512 % 32;
             int hour = iTime / 2048;
             int minute = iTime % 2048 / 32;
-            int second = iTime % 2048 % 32 * 2;
+            int second = (iTime % 2048 % 32 * 2) % 60;
 
             if (iDate == UInt16.MaxValue || month == 0 || day == 0)
             {
