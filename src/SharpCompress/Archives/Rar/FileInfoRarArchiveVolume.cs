@@ -14,7 +14,7 @@ namespace SharpCompress.Archives.Rar
     public class FileInfoRarArchiveVolume : RarVolume
     {
         internal FileInfoRarArchiveVolume(FileInfo fileInfo, ReaderOptions options)
-            : base(StreamingMode.Seekable, fileInfo.OpenRead(), FixOptions(options))
+            : base(StreamingMode.Seekable, new FileStream(fileInfo.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, 1024), FixOptions(options))
         {
             FileInfo = fileInfo;
             FileParts = GetVolumeFileParts().ToArray().ToReadOnly();
