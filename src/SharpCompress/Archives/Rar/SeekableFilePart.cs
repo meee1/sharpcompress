@@ -17,7 +17,7 @@ namespace SharpCompress.Archives.Rar
         }
 
         public override Stream GetCompressedStream()
-        {
+        {            
             stream.Position = FileHeader.DataStartPosition;
             if (FileHeader.R4Salt != null)
             {

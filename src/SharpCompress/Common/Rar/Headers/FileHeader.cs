@@ -401,7 +401,7 @@ namespace SharpCompress.Common.Rar.Headers
         // 4 - good compression
         // 5 - best compression
         internal byte CompressionMethod { get; private set; }
-        internal bool IsStored => CompressionMethod == 0;
+        public bool IsStored => CompressionMethod == 0;
 
         // eg (see DoUnpack())
         //case 15: // rar 1.5 compression
@@ -415,8 +415,6 @@ namespace SharpCompress.Common.Rar.Headers
 
         // unused for UnpackV1 implementation (limitation)
         internal size_t WindowSize { get; private set; }
-
-        public byte PackingMethod { get; private set; }
         internal byte[] R4Salt { get; private set; }
 
         private byte HostOs { get; set; }
