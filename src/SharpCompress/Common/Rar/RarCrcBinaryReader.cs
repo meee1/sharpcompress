@@ -4,7 +4,7 @@ using SharpCompress.IO;
 
 namespace SharpCompress.Common.Rar
 {
-    internal class RarCrcBinaryReader : MarkingBinaryReader
+    public class RarCrcBinaryReader : MarkingBinaryReader
     {
         private uint _currentCrc;
 

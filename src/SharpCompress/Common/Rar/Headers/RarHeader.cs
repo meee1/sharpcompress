@@ -59,7 +59,7 @@ namespace SharpCompress.Common.Rar.Headers
             }
         }
 
-        protected RarHeader(RarHeader header, RarCrcBinaryReader reader, HeaderType headerType) {
+        public RarHeader(RarHeader header, RarCrcBinaryReader reader, HeaderType headerType) {
             _headerType = headerType;
             _isRar5 = header.IsRar5;
             HeaderCrc = header.HeaderCrc;
@@ -100,15 +100,15 @@ namespace SharpCompress.Common.Rar.Headers
 
         public HeaderType HeaderType => _headerType;
 
-        protected bool IsRar5 => _isRar5;
+        internal bool IsRar5 => _isRar5;
 
-        protected uint HeaderCrc { get; }
+        internal uint HeaderCrc { get; }
 
         internal byte HeaderCode { get; }
 
-        protected ushort HeaderFlags { get; }
+        internal ushort HeaderFlags { get; }
 
-        protected bool HasHeaderFlag(ushort flag) 
+        internal bool HasHeaderFlag(ushort flag) 
         {
             return (HeaderFlags & flag) == flag;
         }
@@ -120,11 +120,11 @@ namespace SharpCompress.Common.Rar.Headers
         /// <summary>
         /// Extra header size.
         /// </summary>
-        protected uint ExtraSize { get; }
+        internal uint ExtraSize { get; }
 
         /// <summary>
         /// Size of additional data (eg file contents)
         /// </summary>
-        protected long AdditionalDataSize { get; }
+        internal long AdditionalDataSize { get; }
     }
 }

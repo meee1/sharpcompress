@@ -426,7 +426,6 @@ namespace SharpCompress.Common.Rar.Headers
         internal string FileName { get; private set; }
         internal byte[] SubData { get; private set; }
         internal int RecoverySectors { get; private set; }
-        internal long DataStartPosition { get; set; }
         public Stream PackedStream { get; set; }
 
         public bool IsSplitAfter => IsRar5 ? HasHeaderFlag(HeaderFlagsV5.SPLIT_AFTER) : HasFlag(FileFlagsV4.SPLIT_AFTER);
